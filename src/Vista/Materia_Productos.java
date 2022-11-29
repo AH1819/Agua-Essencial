@@ -6,12 +6,9 @@ import Controlador.control_Proveedor;
 import Modelo.Materia_prima;
 import Modelo.Producto;
 import Modelo.Proveedor;
-//import static Vista.Menu_custom.jDesktopPane_menu;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JOptionPane;
-import org.greenrobot.eventbus.Subscribe;
 
 public class Materia_Productos extends javax.swing.JPanel {
 
@@ -25,11 +22,11 @@ public class Materia_Productos extends javax.swing.JPanel {
     public Materia_Productos(String opcion) {
         initComponents();
         this.setSize(new Dimension(1370, 679));
-        initComponents();
         Panel_Actualizar.setVisible(false);
         Proveedores_carga();
         Panel_Añadir.setVisible(false);
         if (opcion.equals("Materia Prima")) {
+            Title.setText(opcion);
             jLabel7.setText("Elegir Materia:");
             mensaje = "Materia Prima";
             Añadir.setText("Añadir Materia");
@@ -38,6 +35,7 @@ public class Materia_Productos extends javax.swing.JPanel {
             Materia_Productos();
         }
         if (opcion.equals("Productos")) {
+            Title.setText(opcion);
             jLabel7.setText("Elegir Producto:");
             mensaje = "Producto";
             Añadir.setText("Añadir Producto");
@@ -64,10 +62,11 @@ public class Materia_Productos extends javax.swing.JPanel {
         Id = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        descripcion = new javax.swing.JTextField();
         proveedor = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         Nombre_act = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        descripcion = new javax.swing.JTextArea();
         Añadir = new javax.swing.JButton();
         Panel_Añadir = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
@@ -79,7 +78,7 @@ public class Materia_Productos extends javax.swing.JPanel {
         btnguardar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         Descripcion = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        Title = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -179,7 +178,8 @@ public class Materia_Productos extends javax.swing.JPanel {
         Panel_Actualizar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Id producto:");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Id Materia:");
 
         Id.setEditable(false);
 
@@ -192,48 +192,67 @@ public class Materia_Productos extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Nombre:");
 
+        descripcion.setColumns(20);
+        descripcion.setLineWrap(true);
+        descripcion.setRows(5);
+        descripcion.setWrapStyleWord(true);
+        jScrollPane3.setViewportView(descripcion);
+
         javax.swing.GroupLayout Panel_ActualizarLayout = new javax.swing.GroupLayout(Panel_Actualizar);
         Panel_Actualizar.setLayout(Panel_ActualizarLayout);
         Panel_ActualizarLayout.setHorizontalGroup(
             Panel_ActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_ActualizarLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
                 .addGroup(Panel_ActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(45, 45, 45)
+                    .addGroup(Panel_ActualizarLayout.createSequentialGroup()
+                        .addGap(0, 32, Short.MAX_VALUE)
+                        .addComponent(Nombre_act, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(Panel_ActualizarLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addGap(100, 100, 100)))
                 .addGroup(Panel_ActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(Panel_ActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(Nombre_act, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addGroup(Panel_ActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(27, 27, 27))
+                .addGap(42, 42, 42))
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_ActualizarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(252, 252, 252))
         );
         Panel_ActualizarLayout.setVerticalGroup(
             Panel_ActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_ActualizarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Panel_ActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel1))
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Panel_ActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Nombre_act, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 28, Short.MAX_VALUE))
+                .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(Panel_ActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(Panel_ActualizarLayout.createSequentialGroup()
+                        .addGroup(Panel_ActualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_ActualizarLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Nombre_act, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_ActualizarLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(94, 94, 94))
+                    .addGroup(Panel_ActualizarLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))))
         );
 
-        add(Panel_Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 470, 620, 90));
+        add(Panel_Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 620, 220));
 
         Añadir.setText("Añadir Materia");
         Añadir.addActionListener(new java.awt.event.ActionListener() {
@@ -247,7 +266,7 @@ public class Materia_Productos extends javax.swing.JPanel {
 
         Titulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Titulo.setText("Nuevo Producto");
+        Titulo.setText("Nueva Materia");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Nombre:");
@@ -279,33 +298,27 @@ public class Materia_Productos extends javax.swing.JPanel {
         Descripcion.setWrapStyleWord(true);
         jScrollPane2.setViewportView(Descripcion);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Limpiar");
-
         javax.swing.GroupLayout Panel_AñadirLayout = new javax.swing.GroupLayout(Panel_Añadir);
         Panel_Añadir.setLayout(Panel_AñadirLayout);
         Panel_AñadirLayout.setHorizontalGroup(
             Panel_AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(Panel_AñadirLayout.createSequentialGroup()
-                .addGroup(Panel_AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Panel_AñadirLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(Panel_AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8))
-                        .addGap(39, 39, 39)
-                        .addGroup(Panel_AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Nombre_ins, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-                            .addComponent(Proveedores_cbx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(Panel_AñadirLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(btnguardar)
-                        .addGap(37, 37, 37)
-                        .addComponent(jButton1)))
+                .addGap(24, 24, 24)
+                .addGroup(Panel_AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8))
+                .addGap(39, 39, 39)
+                .addGroup(Panel_AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(Nombre_ins, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                    .addComponent(Proveedores_cbx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_AñadirLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnguardar)
+                .addGap(88, 88, 88))
         );
         Panel_AñadirLayout.setVerticalGroup(
             Panel_AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,18 +333,20 @@ public class Materia_Productos extends javax.swing.JPanel {
                 .addGroup(Panel_AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addGroup(Panel_AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(Proveedores_cbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
-                .addGroup(Panel_AñadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnguardar)
-                    .addComponent(jButton1))
-                .addGap(35, 35, 35))
+                .addGap(55, 55, 55)
+                .addComponent(btnguardar)
+                .addGap(39, 39, 39))
         );
 
         add(Panel_Añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 100, 400, 390));
+
+        Title.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void InventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventarioMouseClicked
@@ -341,12 +356,26 @@ public class Materia_Productos extends javax.swing.JPanel {
     private void Actualizar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Actualizar_btnActionPerformed
         if (!Nombre_act.getText().isEmpty()) {
             if (!descripcion.getText().isEmpty()) {
+                if (!proveedor.getSelectedItem().equals("Selecciona una opción")) {
+                    for (String[] Proveedore : Proveedores) {
+                        if (Proveedore[1].equals(proveedor.getSelectedItem())) {
+                            id_proveedor = Integer.parseInt(Proveedore[0]);
+                        }
+                    }
+                    Actualizar(Integer.parseInt(Id.getText()), id_proveedor, Nombre_act.getText(), descripcion.getText());
 
+                    id_proveedor = 0;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Campo vacio: Proveedor", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                    proveedor.requestFocus();
+                }
             } else {
-
+                JOptionPane.showMessageDialog(null, "Campo vacio: Descripcion", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                descripcion.requestFocus();
             }
         } else {
-
+            JOptionPane.showMessageDialog(null, "Campo vacio: Nombre", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            Nombre_act.requestFocus();
         }
     }//GEN-LAST:event_Actualizar_btnActionPerformed
 
@@ -362,19 +391,36 @@ public class Materia_Productos extends javax.swing.JPanel {
         if (!Id_buscar.getText().isEmpty()) {
             if (productos) {
                 Search(Integer.parseInt(Id_buscar.getText()));
-                Panel_Actualizar.setVisible(true);
+
                 jLabel2.setText("Id producto");
             }
             if (materia) {
                 Search(Integer.parseInt(Id_buscar.getText()));
-                Panel_Actualizar.setVisible(true);
                 jLabel2.setText("Id materia");
             }
         }
     }//GEN-LAST:event_btnbuscarActionPerformed
 
     private void AñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirActionPerformed
-        Panel_Añadir.setVisible(true);
+        if (materia) {
+            if (Añadir.getText().equals("Añadir Materia")) {
+                Panel_Añadir.setVisible(true);
+                Añadir.setText("Ocultar");
+            } else {
+                Panel_Añadir.setVisible(false);
+                Añadir.setText("Añadir Materia");
+            }
+        }
+        if (productos) {
+            if (Añadir.getText().equals("Añadir Producto")) {
+                Panel_Añadir.setVisible(true);
+                Añadir.setText("Ocultar");
+            } else {
+                Panel_Añadir.setVisible(false);
+                Añadir.setText("Añadir Producto");
+            }
+        }
+
     }//GEN-LAST:event_AñadirActionPerformed
 
     private void Proveedores_cbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Proveedores_cbxActionPerformed
@@ -391,7 +437,7 @@ public class Materia_Productos extends javax.swing.JPanel {
                         }
                     }
 
-                    Insertar(id_proveedor, Nombre_act.getText(), Descripcion.getText());
+                    Insertar(id_proveedor, Nombre_ins.getText(), Descripcion.getText());
 
                     id_proveedor = 0;
                 } else {
@@ -404,11 +450,25 @@ public class Materia_Productos extends javax.swing.JPanel {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Campo vacio: Nombre", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-            Nombre_act.requestFocus();
+            Nombre_ins.requestFocus();
         }
     }//GEN-LAST:event_btnguardarActionPerformed
 
+    private void Limpiar_Actualizar() {
+        proveedor.setSelectedIndex(0);
+        Nombre_act.setText("");
+        descripcion.setText("");
+        Id.setText("");
+        Id_buscar.setText("");
+        Panel_Actualizar.setVisible(false);
+    }
 
+    private void Limpiar_Añadir() {
+        Nombre_ins.setText("");
+        Descripcion.setText("");
+        Proveedores_cbx.setSelectedIndex(0);
+        Panel_Añadir.setVisible(false);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Actualizar_btn;
     private javax.swing.JButton Añadir;
@@ -422,11 +482,11 @@ public class Materia_Productos extends javax.swing.JPanel {
     private javax.swing.JPanel Panel_Actualizar;
     private javax.swing.JPanel Panel_Añadir;
     private javax.swing.JComboBox<String> Proveedores_cbx;
+    private javax.swing.JLabel Title;
     private javax.swing.JLabel Titulo;
     private javax.swing.JButton btnbuscar;
     private javax.swing.JButton btnguardar;
-    private javax.swing.JTextField descripcion;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextArea descripcion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -438,15 +498,30 @@ public class Materia_Productos extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JComboBox<String> proveedor;
     // End of variables declaration//GEN-END:variables
 private void Eliminar(int id) {
-        control_Producto cp = new control_Producto();
-        status = cp.Eliminar_producto(id);
-        if (status) {
-            JOptionPane.showMessageDialog(null, "Eliminado", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "No pudo ser eliminado", "Error", JOptionPane.INFORMATION_MESSAGE);
+        if (productos) {
+            control_Producto cp = new control_Producto();
+            status = cp.Eliminar_producto(id);
+            if (status) {
+                JOptionPane.showMessageDialog(null, "Eliminado", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
+                Materia_Productos();
+            } else {
+                JOptionPane.showMessageDialog(null, "No pudo ser eliminado", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
+        if (materia) {
+            control_Materia cp = new control_Materia();
+            status = cp.Eliminar_Materia(id);
+            if (status) {
+                JOptionPane.showMessageDialog(null, "Eliminado", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
+                Materia_Productos();
+            } else {
+                JOptionPane.showMessageDialog(null, "No pudo ser eliminado", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }
 
@@ -457,6 +532,9 @@ private void Eliminar(int id) {
             status = cm.Actualizar(mp);
             if (status) {
                 JOptionPane.showMessageDialog(null, "Actualizado", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
+                Limpiar_Actualizar();
+                Materia_Productos();
+
             } else {
                 JOptionPane.showMessageDialog(null, "No pudo ser actualizado", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -467,6 +545,9 @@ private void Eliminar(int id) {
             status = cm.Actualizar(pd);
             if (status) {
                 JOptionPane.showMessageDialog(null, "Actualizado", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
+                Limpiar_Actualizar();
+                Materia_Productos();
+
             } else {
                 JOptionPane.showMessageDialog(null, "No pudo ser actualizado", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -480,7 +561,10 @@ private void Eliminar(int id) {
             List<Producto> lista = cm.Search_Producto(id);
             int tam = lista.size();
             String id_prov;
-            if (tam != 0) {
+            if (tam > 0) {
+                Panel_Actualizar.setVisible(true);
+                Actualizar_btn.setEnabled(true);
+                Eliminar_btn.setEnabled(true);
                 for (int i = 0; i < tam; i++) {
                     Id.setText(String.valueOf(lista.get(i).getId_producto()));
                     Nombre_act.setText(lista.get(i).getNombre());
@@ -494,18 +578,19 @@ private void Eliminar(int id) {
                         }
                     }
                 }
-                Actualizar_btn.setVisible(true);
-                Eliminar_btn.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Producto no registrado", "Aviso", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         if (materia) {
             control_Materia cm = new control_Materia();
-            List<Materia_prima> lista = cm.Search_Producto(id);
+            List<Materia_prima> lista = cm.Search_Materia(id);
             int tam = lista.size();
             String id_prov;
-            if (tam != 0) {
+            if (tam > 0) {
+                Panel_Actualizar.setVisible(true);
+                Actualizar_btn.setEnabled(true);
+                Eliminar_btn.setEnabled(true);
                 for (int i = 0; i < tam; i++) {
                     Id.setText(String.valueOf(lista.get(i).getId_materia()));
                     descripcion.setText(lista.get(i).getDescripcion());
@@ -517,8 +602,6 @@ private void Eliminar(int id) {
                         }
                     }
                 }
-                Actualizar_btn.setVisible(true);
-                Eliminar_btn.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Materia prima no registrada", "Aviso", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -599,8 +682,9 @@ private void Eliminar(int id) {
             status = cp.Insertar_Productos(p);
             if (status) {
                 JOptionPane.showMessageDialog(null, "Producto Registrado", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
-                Panel_Añadir.setVisible(false);
+                Limpiar_Añadir();
                 Materia_Productos();
+
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo registrar el producto", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -610,7 +694,10 @@ private void Eliminar(int id) {
             Materia_prima MP = new Materia_prima(id_proveedor, Nombre, Descripcion);
             status = Mp.Insertar_Materias(MP);
             if (status) {
-                JOptionPane.showMessageDialog(null, "Materia Registrado", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Materia Registrada", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
+                Limpiar_Añadir();
+                Materia_Productos();
+
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo registrar la materia", "Error", JOptionPane.INFORMATION_MESSAGE);
             }

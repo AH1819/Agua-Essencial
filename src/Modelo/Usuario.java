@@ -1,12 +1,7 @@
 package Modelo;
 
-/**
- *
- * @author Erick
- */
 public class Usuario {
 
-    //Atributos
     private int idUsuario;
     private String nombre;
     private String apellido_p;
@@ -14,13 +9,30 @@ public class Usuario {
     private String usuario;
     private String password;
     private String telefono;
-    private String status;
 
-    //Constructor
     public Usuario() {
         
     }
-    //Get y Set
+
+    public Usuario(int idUsuario, String nombre, String apellido_p, String apellido_m, String usuario,String password, String telefono) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.apellido_p = apellido_p;
+        this.apellido_m = apellido_m;
+        this.usuario = usuario;
+        this.password = password;
+        this.telefono = telefono;
+    }
+
+    public Usuario(String nombre, String apellido_p, String apellido_m, String usuario, String password, String telefono) {
+        this.nombre = nombre;
+        this.apellido_p = apellido_p;
+        this.apellido_m = apellido_m;
+        this.usuario = usuario;
+        this.password = password;
+        this.telefono = telefono;
+    }
+    
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -59,14 +71,6 @@ public class Usuario {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setstatus(String status) {
-        this.status = status;
     }
 
     public String getApellido_p() {

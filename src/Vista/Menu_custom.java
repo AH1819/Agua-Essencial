@@ -19,10 +19,10 @@ public class Menu_custom extends javax.swing.JFrame {
         this.setSize(new Dimension(1366, 728));
         GradientDropdownMenu menu = new GradientDropdownMenu();
         menu.addItem(" Clientes ", "Gestionar Clientes", "Agenda Clientes");
-        menu.addItem("  Ventas  ", "Historial de Ventas", "Reporte de Ventas");
+        menu.addItem("  Ventas  ", "Registrar Ventas", "Historial de Ventas", "Reporte de Ventas");
         menu.addItem("Repartidor", "Gestionar Repartidores", "Registrar Repartidor");
         menu.addItem("   Stock  ", "Inventario", "Productos", "Materia Prima", "Proveedores");
-        menu.addItem("  Sesión  ", "Gestionar Usuarios", "Cerrar Sesión", "Salir");
+        menu.addItem("  Sesión  ", "Gestionar Usuarios", "Cerrar Sesión", "Manual de usuario", "Salir");
         menu.setFont(new java.awt.Font("sansserif", 1, 14));
         menu.applay(this);
 
@@ -40,11 +40,9 @@ public class Menu_custom extends javax.swing.JFrame {
                             Administrar_Clientes AdminCl = new Administrar_Clientes();
                             showInterlanFrame(AdminCl);
                             break;
-                        case "Registrar Cliente":
-                            InterCliente interCl = new InterCliente();
-                            showInterlanFrame(interCl);
-                            break;
                         case "Agenda Clientes":
+                            Agenda_cliente ac = new Agenda_cliente();
+                            showInterlanFrame(ac);
                             break;
                         case "Historial de Ventas":
                             break;
@@ -57,25 +55,17 @@ public class Menu_custom extends javax.swing.JFrame {
                         case "Productos":
                             Materia_Productos MP = new Materia_Productos(opcion);
                             showInterlanFrame(MP);
-                            //eventos.register(MP);
-
-                            //showInterlanFrame(intergesMa);
                             break;
                         case "Materia Prima":
-                            InterGestionarMat_Prod intergesMat = new InterGestionarMat_Prod(opcion);
-                            //eventos.register(intergesMat);
+                            Materia_Productos intergesMat = new Materia_Productos(opcion);
                             showInterlanFrame(intergesMat);
                             break;
                         case "Proveedores":
-                            InterGestionarProveedor intProveedores = new InterGestionarProveedor();
+                            Proveedores intProveedores = new Proveedores();
                             showInterlanFrame(intProveedores);
                             break;
-                        case "Nuevo Usuario":
-                            InterUsuario interUsuario = new InterUsuario();
-                            showInterlanFrame(interUsuario);
-                            break;
                         case "Gestionar Usuarios":
-                            InterGestionarUsu intergesUs = new InterGestionarUsu();
+                            Gestionar_usuarios intergesUs = new Gestionar_usuarios();
                             showInterlanFrame(intergesUs);
                             break;
                         case "Cerrar Sesión":
@@ -96,7 +86,7 @@ public class Menu_custom extends javax.swing.JFrame {
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
-                getImage(ClassLoader.getSystemResource("Imagenes/Logo.jpg"));
+                getImage(ClassLoader.getSystemResource("Imagenes/layer.png"));
         return retValue;
     }
 
@@ -132,7 +122,7 @@ public class Menu_custom extends javax.swing.JFrame {
             .addGap(0, 680, Short.MAX_VALUE)
         );
 
-        Contenedor.setBackground(new java.awt.Color(255, 255, 255));
+        Contenedor.setBackground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout ContenedorLayout = new javax.swing.GroupLayout(Contenedor);
         Contenedor.setLayout(ContenedorLayout);

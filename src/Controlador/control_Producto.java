@@ -69,7 +69,7 @@ public class control_Producto {
     public boolean Actualizar(Producto producto) {
         boolean status = false;
 
-        String sql = "update producto "
+        String sql = "update productos "
                 + "set id_proveedor = ?, "
                 + "nombre = ?, "
                 + "descripcion=? "

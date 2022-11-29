@@ -39,6 +39,14 @@ public class Cliente {
         this.lote = lote;
     }
 
+    public Cliente(int idCliente, String Nombre, String Apellido_p, String Apellido_m) {
+        this.idCliente = idCliente;
+        this.nombre = Nombre;
+        this.apellido_p = Apellido_p;
+        this.apellido_m = Apellido_m;
+        
+    }
+
     public int getIdCliente() {
         return idCliente;
     }

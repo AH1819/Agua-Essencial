@@ -67,7 +67,32 @@ public class control_Materia {
         }
 
     }
+    
+    public boolean Eliminar_Materia(int id) {
+        boolean status;
 
+        String sql = "update materia_prima set status = 'Inactivo' where id_materia = ?";
+        PreparedStatement comando = null;
+
+        try {
+
+            comando = conexion.conectar().prepareStatement(sql);
+            comando.setInt(1, id);
+
+            comando.executeUpdate();
+
+            status = true;
+
+            conexion.conectar().close();
+            comando.close();
+        } catch (SQLException ex) {
+            status = false;
+            Logger.getLogger(control_Materia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return status;
+    }
+    
     public boolean Actualizar(Materia_prima materia) {
         boolean status = false;
 
@@ -134,7 +159,7 @@ public class control_Materia {
         return MP;
     }
 
-    public List<Materia_prima> Search_Producto(int id_producto) {
+    public List<Materia_prima> Search_Materia(int id) {
         List<Materia_prima> MP = new ArrayList<>();
 
         String sql = "select * from materia_prima where id_materia = ?";
@@ -143,7 +168,7 @@ public class control_Materia {
         try {
 
             comando = conexion.conectar().prepareStatement(sql);
-            comando.setInt(1, id_producto);
+            comando.setInt(1, id);
             Resultado = comando.executeQuery();
 
             if (Resultado.next()) {
@@ -167,17 +192,17 @@ public class control_Materia {
         List<Inventario_Materia> IP = new ArrayList<>();
         try {
 
-            String sql = "select im.inv_prod_codigo,mp.descripcion,im.inv_entradas,im.inv_salidas,im.inv_stock "
+            String sql = "select im.inv_mat_codigo,mp.descripcion,im.inv_entradas,im.inv_salidas,im.inv_stock "
                     + "from inventario_materiaprim im "
                     + "inner join materia_prima mp "
-                    + "on im.inv_prod_codigo = mp.id_materia ";
+                    + "on im.inv_mat_codigo = mp.id_materia ";
             PreparedStatement comando = null;
 
             comando = conexion.conectar().prepareStatement(sql);
             Resultado = comando.executeQuery();
 
             while (Resultado.next()) {
-                Inventario_Materia m = new Inventario_Materia(Resultado.getInt("inv_prod_codigo"),
+                Inventario_Materia m = new Inventario_Materia(Resultado.getInt("inv_mat_codigo"),
                         Resultado.getString("descripcion"), Resultado.getInt("inv_entradas"),
                         Resultado.getInt("inv_salidas"), Resultado.getInt("inv_stock"));
                 IP.add(m);

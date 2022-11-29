@@ -6,25 +6,27 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class control_Usuario {
 
     private final ConexionBD conexion = ConexionBD.getInstance();
+    private static ResultSet Resultado;
 
     public boolean guardar(Usuario objeto) {
         boolean respuesta = false;
 
         try {
 
-            PreparedStatement consulta = conexion.conectar().prepareStatement("insert into usuario(nombre,apellido_p,apellido_m,usuario,password,telefono,status) values(?,?,?,?,?,?,?)");
+            PreparedStatement consulta = conexion.conectar().prepareStatement("insert into usuario(nombre,apellido_p,apellido_m,usuario,password,telefono) values(?,?,?,?,?,?)");
             consulta.setString(1, objeto.getNombre());
             consulta.setString(2, objeto.getApellido_p());
             consulta.setString(3, objeto.getApellido_m());
             consulta.setString(4, objeto.getUsuario());
             consulta.setString(5, objeto.getPassword());
             consulta.setString(6, objeto.getTelefono());
-            consulta.setString(7, objeto.getStatus());
 
             if (consulta.executeUpdate() > 0) {
                 respuesta = true;
@@ -36,6 +38,74 @@ public class control_Usuario {
             JOptionPane.showMessageDialog(null, e, "Mensaje", JOptionPane.ERROR_MESSAGE);
         }
         return respuesta;
+    }
+
+    public List<Usuario> Buscar_Usuario(int id) {
+        List<Usuario> Us = new ArrayList<>();
+
+        String sql = "select * from usuario where id_usuario = ? and status = 'Activo'";
+        PreparedStatement comando = null;
+
+        try {
+
+            comando = conexion.conectar().prepareStatement(sql);
+            comando.setInt(1, id);
+            Resultado = comando.executeQuery();
+
+            if (Resultado.next()) {
+                Usuario us = new Usuario(Resultado.getInt("id_usuario"),
+                        Resultado.getString("nombre"),
+                        Resultado.getString("apellido_p"),
+                        Resultado.getString("apellido_m"),
+                        Resultado.getString("usuario"),
+                        Resultado.getString("password"),
+                        Resultado.getString("telefono"));
+                Us.add(us);
+            }
+
+            conexion.conectar().close();
+            comando.close();
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex, "Mensaje", JOptionPane.ERROR_MESSAGE);
+
+        }
+
+        return Us;
+    }
+
+    public List<Usuario> Mostrar_Usuarios() {
+        List<Usuario> LU = new ArrayList<>();
+
+        String sql = "select * from usuario where status = 'Activo' order by id_usuario asc";
+        PreparedStatement comando = null;
+
+        try {
+
+            comando = conexion.conectar().prepareStatement(sql);
+            Resultado = comando.executeQuery();
+
+            while (Resultado.next()) {
+                Usuario Us = new Usuario(Resultado.getInt("id_usuario"),
+                        Resultado.getString("nombre"),
+                        Resultado.getString("apellido_p"),
+                        Resultado.getString("apellido_m"),
+                        Resultado.getString("usuario"),
+                        Resultado.getString("password"),
+                        Resultado.getString("telefono"));
+                LU.add(Us);
+            }
+
+            conexion.conectar().close();
+            comando.close();
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, ex, "Mensaje", JOptionPane.ERROR_MESSAGE);
+
+        }
+        return LU;
     }
 
     public boolean existeUsu(String usuario) {
@@ -72,28 +142,29 @@ public class control_Usuario {
                 respuesta = true;
 
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
 
         }
         return respuesta;
     }
 
-    public boolean actualizar(Usuario objeto, int idUsuario) {
+    public boolean actualizar(Usuario objeto) {
         boolean respuesta = false;
         try {
-            PreparedStatement consulta = conexion.conectar().prepareStatement("update usuario set nombre=?, apellido_p=?, apellido_m=?, usuario=?, password=?, telefono=? where id_usuario='" + idUsuario + "'");
+            PreparedStatement consulta = conexion.conectar().prepareStatement("update usuario set nombre=?, apellido_p=?, apellido_m=?, usuario=?, password=?, telefono=? where id_usuario=?");
             consulta.setString(1, objeto.getNombre());
             consulta.setString(2, objeto.getApellido_p());
             consulta.setString(3, objeto.getApellido_m());
             consulta.setString(4, objeto.getUsuario());
             consulta.setString(5, objeto.getPassword());
             consulta.setString(6, objeto.getTelefono());
+            consulta.setInt(7, objeto.getIdUsuario());
 
             if (consulta.executeUpdate() > 0) {
                 respuesta = true;
             }
             conexion.conectar().close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar usuario" + e, "Mensaje", JOptionPane.ERROR_MESSAGE);
 
         }
