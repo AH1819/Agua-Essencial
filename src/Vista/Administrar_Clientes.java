@@ -20,7 +20,6 @@ public class Administrar_Clientes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         Panel_actualizar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         Nombre_act = new javax.swing.JTextField();
@@ -70,12 +69,10 @@ public class Administrar_Clientes extends javax.swing.JPanel {
         Lote_re = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(102, 102, 102));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Administrar Clientes");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         Panel_actualizar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         Panel_actualizar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -104,7 +101,19 @@ public class Administrar_Clientes extends javax.swing.JPanel {
         jLabel6.setText("Calle:");
         Panel_actualizar.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
         Panel_actualizar.add(Calle_act, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 120, -1));
+
+        Manzana_act.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Manzana_actKeyTyped(evt);
+            }
+        });
         Panel_actualizar.add(Manzana_act, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 120, -1));
+
+        Lote_act.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Lote_actKeyTyped(evt);
+            }
+        });
         Panel_actualizar.add(Lote_act, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 100, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -119,11 +128,23 @@ public class Administrar_Clientes extends javax.swing.JPanel {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Id Cliente");
         Panel_actualizar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, -1));
+
+        Id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                IdKeyTyped(evt);
+            }
+        });
         Panel_actualizar.add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 70, -1));
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel20.setText("Telefono:");
         Panel_actualizar.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, -1, -1));
+
+        Telefono_act.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Telefono_actKeyTyped(evt);
+            }
+        });
         Panel_actualizar.add(Telefono_act, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 110, -1));
 
         add(Panel_actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 630, 250));
@@ -171,6 +192,12 @@ public class Administrar_Clientes extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Elegir Materia:");
+
+        Id_buscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Id_buscarKeyTyped(evt);
+            }
+        });
 
         btnbuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnbuscar.setText("Elegir");
@@ -262,6 +289,12 @@ public class Administrar_Clientes extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Apellio Materno:");
 
+        Telefono_re.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Telefono_reKeyTyped(evt);
+            }
+        });
+
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Telefono:");
@@ -272,6 +305,18 @@ public class Administrar_Clientes extends javax.swing.JPanel {
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel17.setText("Calle:");
+
+        Manzana_re.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Manzana_reKeyTyped(evt);
+            }
+        });
+
+        Lote_re.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Lote_reKeyTyped(evt);
+            }
+        });
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel18.setText("Manzana:");
@@ -388,6 +433,11 @@ public class Administrar_Clientes extends javax.swing.JPanel {
         );
 
         add(Panel_Añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 100, 400, 530));
+
+        jLabel21.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("Gestion de clientes");
+        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 0, 1370, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void ClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClientesMouseClicked
@@ -454,6 +504,86 @@ public class Administrar_Clientes extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnguardarActionPerformed
 
+    private void Manzana_reKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Manzana_reKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_Manzana_reKeyTyped
+
+    private void Lote_reKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Lote_reKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_Lote_reKeyTyped
+
+    private void Telefono_reKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Telefono_reKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+        if(Telefono_re.getText().trim().length() > 10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_Telefono_reKeyTyped
+
+    private void Manzana_actKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Manzana_actKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_Manzana_actKeyTyped
+
+    private void Lote_actKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Lote_actKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_Lote_actKeyTyped
+
+    private void Telefono_actKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Telefono_actKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+        if(Telefono_act.getText().trim().length() > 10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_Telefono_actKeyTyped
+
+    private void IdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IdKeyTyped
+
+    private void Id_buscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Id_buscarKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_Id_buscarKeyTyped
+
     private void Limpiar_Añadir(){
         Nombre_re.setText("");
         Apellido_p_re.setText("");
@@ -495,7 +625,6 @@ public class Administrar_Clientes extends javax.swing.JPanel {
     private javax.swing.JLabel Titulo;
     private javax.swing.JButton btnbuscar;
     private javax.swing.JButton btnguardar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -508,6 +637,7 @@ public class Administrar_Clientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

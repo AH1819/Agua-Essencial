@@ -2,8 +2,12 @@ package Modelo;
 
 public class Agenda {
     private int id_agenda;
-    private int id_dia;
-    private String Dia;
+    private int lunes;
+    private int martes;
+    private int miercoles;
+    private int jueves;
+    private int viernes;
+    private int sabado;
     private int id_mes;
     private String Mes;
     private int id_cliente;
@@ -12,18 +16,39 @@ public class Agenda {
     public Agenda() {
     }
 
-    public Agenda(int id_dia, int id_mes, int id_cliente) {
-        this.id_dia = id_dia;
+    public Agenda(int lunes, int martes, int miercoles, int jueves, int viernes, int sabado, int id_mes, int id_cliente) {
+        this.lunes = lunes;
+        this.martes = martes;
+        this.miercoles = miercoles;
+        this.jueves = jueves;
+        this.viernes = viernes;
+        this.sabado = sabado;
         this.id_mes = id_mes;
         this.id_cliente = id_cliente;
     }
-    
-    public Agenda(int id_agenda, int id_dia, String Dia, int id_cliente,String nombre) {
+
+    public Agenda(int id_agenda, int lunes, int martes, int miercoles, int jueves, int viernes, int sabado, int id_mes, int id_cliente) {
         this.id_agenda = id_agenda;
-        this.id_dia = id_dia;
-        this.Dia = Dia;
+        this.lunes = lunes;
+        this.martes = martes;
+        this.miercoles = miercoles;
+        this.jueves = jueves;
+        this.viernes = viernes;
+        this.sabado = sabado;
+        this.id_mes = id_mes;
         this.id_cliente = id_cliente;
-        this.nombre =nombre;
+    }
+
+    public Agenda(int id_agenda, int lunes, int martes, int miercoles, int jueves, int viernes, int sabado, int id_cliente, String nombre) {
+        this.id_agenda = id_agenda;
+        this.lunes = lunes;
+        this.martes = martes;
+        this.miercoles = miercoles;
+        this.jueves = jueves;
+        this.viernes = viernes;
+        this.sabado = sabado;
+        this.id_cliente = id_cliente;
+        this.nombre = nombre;
     }
     
     public int getId_agenda() {
@@ -34,20 +59,52 @@ public class Agenda {
         this.id_agenda = id_agenda;
     }
 
-    public int getId_dia() {
-        return id_dia;
+    public int getLunes() {
+        return lunes;
     }
 
-    public void setId_dia(int id_dia) {
-        this.id_dia = id_dia;
+    public void setLunes(int lunes) {
+        this.lunes = lunes;
     }
 
-    public String getDia() {
-        return Dia;
+    public int getMartes() {
+        return martes;
     }
 
-    public void setDia(String Dia) {
-        this.Dia = Dia;
+    public void setMartes(int martes) {
+        this.martes = martes;
+    }
+
+    public int getMiercoles() {
+        return miercoles;
+    }
+
+    public void setMiercoles(int miercoles) {
+        this.miercoles = miercoles;
+    }
+
+    public int getJueves() {
+        return jueves;
+    }
+
+    public void setJueves(int jueves) {
+        this.jueves = jueves;
+    }
+
+    public int getViernes() {
+        return viernes;
+    }
+
+    public void setViernes(int viernes) {
+        this.viernes = viernes;
+    }
+
+    public int getSabado() {
+        return sabado;
+    }
+
+    public void setSabado(int sabado) {
+        this.sabado = sabado;
     }
 
     public int getId_mes() {

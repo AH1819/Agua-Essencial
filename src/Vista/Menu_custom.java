@@ -7,12 +7,10 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javaswingdev.GradientDropdownMenu;
 import javaswingdev.MenuEvent;
-import org.greenrobot.eventbus.EventBus;
 
 public class Menu_custom extends javax.swing.JFrame {
 
     String opcion = "";
-    public static EventBus eventos = new EventBus();
 
     public Menu_custom() {
         initComponents();
@@ -20,7 +18,7 @@ public class Menu_custom extends javax.swing.JFrame {
         GradientDropdownMenu menu = new GradientDropdownMenu();
         menu.addItem(" Clientes ", "Gestionar Clientes", "Agenda Clientes");
         menu.addItem("  Ventas  ", "Registrar Ventas", "Historial de Ventas", "Reporte de Ventas");
-        menu.addItem("Repartidor", "Gestionar Repartidores", "Registrar Repartidor");
+        menu.addItem(" Personal ", "Gestionar Personal");
         menu.addItem("   Stock  ", "Inventario", "Productos", "Materia Prima", "Proveedores");
         menu.addItem("  Sesión  ", "Gestionar Usuarios", "Cerrar Sesión", "Manual de usuario", "Salir");
         menu.setFont(new java.awt.Font("sansserif", 1, 14));
@@ -91,36 +89,28 @@ public class Menu_custom extends javax.swing.JFrame {
     }
 
     public void showInterlanFrame(Component com) {
-        com.setSize(1370, 679);
-        com.setLocation(0, 0);
+        new Thread() {
+            public void run() {
+                com.setSize(1370, 679);
+                com.setLocation(0, 0);
 
-        Contenedor.removeAll();
-        Contenedor.add(com, BorderLayout.CENTER);
-        Contenedor.revalidate();
-        Contenedor.repaint();
+                Contenedor.removeAll();
+                Contenedor.add(com, BorderLayout.CENTER);
+                Contenedor.revalidate();
+                Contenedor.repaint();
+            }
+        }.start();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Menu_desktop = new javax.swing.JDesktopPane();
         Contenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         setUndecorated(true);
-
-        javax.swing.GroupLayout Menu_desktopLayout = new javax.swing.GroupLayout(Menu_desktop);
-        Menu_desktop.setLayout(Menu_desktopLayout);
-        Menu_desktopLayout.setHorizontalGroup(
-            Menu_desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1378, Short.MAX_VALUE)
-        );
-        Menu_desktopLayout.setVerticalGroup(
-            Menu_desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
-        );
 
         Contenedor.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -132,7 +122,7 @@ public class Menu_custom extends javax.swing.JFrame {
         );
         ContenedorLayout.setVerticalGroup(
             ContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 692, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -140,22 +130,12 @@ public class Menu_custom extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(Menu_desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 50, Short.MAX_VALUE)
+                .addGap(0, 38, Short.MAX_VALUE)
                 .addComponent(Contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(25, 25, 25)
-                    .addComponent(Menu_desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(25, Short.MAX_VALUE)))
         );
 
         pack();
@@ -181,6 +161,5 @@ public class Menu_custom extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Contenedor;
-    public static javax.swing.JDesktopPane Menu_desktop;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,6 +38,9 @@ insert into tarifa values (4,4,9.00);
 create table ventas(
 id_venta serial primary key,
 id_producto int references productos,
+id_producto int references productos,
+id_producto int references productos,
+id_materia int references materia_prima,
 fecha date not null,
 cantidad int not null,
 importe float not null,
@@ -75,7 +78,17 @@ id_cliente int references clientes,
 id_dia int references dias,
 id_mes int references meses
 );
-
+create table agenda_semanal(
+id_agenda serial primary key,
+id_cliente int references clientes,
+Lunes varchar,
+Martes varchar,
+Miercoles varchar,
+Jueves varchar,
+Viernes varchar,
+Sabado varchar,
+id_mes int references meses
+);
 create table proveedores(
 id_proveedor serial primary key,
 razon_social varchar,

@@ -7,7 +7,8 @@ public class Stock_Salida {
     private int id;
     private Date fecha;
     private String concepto;
-    private int cantidad;
+    private int cantidad_p;
+    private Double cantidad_m;
 
     public Stock_Salida() {
     }
@@ -16,9 +17,16 @@ public class Stock_Salida {
         this.id = id;
         this.fecha = fecha;
         this.concepto = concepto;
-        this.cantidad = cantidad;
+        this.cantidad_p = cantidad;
     }
-
+    
+    public Stock_Salida(int id, Date fecha, String concepto, Double cantidad_m) {
+        this.id = id;
+        this.fecha = fecha;
+        this.concepto = concepto;
+        this.cantidad_m = cantidad_m;
+    }
+    
     public int getId_salida() {
         return id_salida;
     }
@@ -51,12 +59,20 @@ public class Stock_Salida {
         this.concepto = concepto;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public int getCantidad_p() {
+        return cantidad_p;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setCantidad_p(int cantidad_p) {
+        this.cantidad_p = cantidad_p;
+    }
+
+    public Double getCantidad_m() {
+        return cantidad_m;
+    }
+
+    public void setCantidad_m(Double cantidad_m) {
+        this.cantidad_m = cantidad_m;
     }
     
 }

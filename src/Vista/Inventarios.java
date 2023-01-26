@@ -26,6 +26,9 @@ public class Inventarios extends javax.swing.JPanel {
     public Inventarios() {
         initComponents();
         Enable(false, false);
+        Entradas.setEnabled(false);
+        Salidas.setEnabled(false);
+        Cargando.setVisible(false);
         this.setSize(new Dimension(1018, 571));
     }
 
@@ -34,6 +37,7 @@ public class Inventarios extends javax.swing.JPanel {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        Cargando = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Inventarios = new javax.swing.JTable();
         Radio_prod = new javax.swing.JRadioButton();
@@ -67,12 +71,17 @@ public class Inventarios extends javax.swing.JPanel {
         Fecha_s = new com.toedter.calendar.JDateChooser();
         Cantidad_s = new javax.swing.JTextField();
         Salida = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
         Concepto_s = new javax.swing.JTextArea();
         Title = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(102, 102, 102));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Cargando.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Cargando.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cargando (1).gif"))); // NOI18N
+        add(Cargando, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 1250, 150));
+
+        Inventarios.setBackground(new java.awt.Color(255, 255, 255));
         Inventarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -83,7 +92,7 @@ public class Inventarios extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(Inventarios);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 1250, 150));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 1250, 150));
 
         buttonGroup1.add(Radio_prod);
         Radio_prod.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -93,7 +102,7 @@ public class Inventarios extends javax.swing.JPanel {
                 Radio_prodActionPerformed(evt);
             }
         });
-        add(Radio_prod, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
+        add(Radio_prod, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
         buttonGroup1.add(Radio_mat);
         Radio_mat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -103,7 +112,7 @@ public class Inventarios extends javax.swing.JPanel {
                 Radio_matActionPerformed(evt);
             }
         });
-        add(Radio_mat, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, -1, -1));
+        add(Radio_mat, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, -1));
 
         Entradas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Entradas.setText("Añadir entradas");
@@ -112,7 +121,7 @@ public class Inventarios extends javax.swing.JPanel {
                 EntradasActionPerformed(evt);
             }
         });
-        add(Entradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 70, -1, -1));
+        add(Entradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, -1, -1));
 
         Salidas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Salidas.setText("Añadir salidas");
@@ -121,7 +130,7 @@ public class Inventarios extends javax.swing.JPanel {
                 SalidasActionPerformed(evt);
             }
         });
-        add(Salidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 70, -1, -1));
+        add(Salidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 40, -1, -1));
 
         Entrada_panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -143,7 +152,7 @@ public class Inventarios extends javax.swing.JPanel {
             }
         });
 
-        Actual_e.setEnabled(false);
+        Actual_e.setEditable(false);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Cantidad actual:");
@@ -169,6 +178,12 @@ public class Inventarios extends javax.swing.JPanel {
             }
         });
 
+        Precio_e.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Precio_eKeyTyped(evt);
+            }
+        });
+
         Entrada.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Entrada.setText("Actualizar");
         Entrada.addActionListener(new java.awt.event.ActionListener() {
@@ -183,7 +198,7 @@ public class Inventarios extends javax.swing.JPanel {
             Entrada_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(Entrada_panelLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(58, 58, 58)
                 .addGroup(Entrada_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
@@ -199,15 +214,15 @@ public class Inventarios extends javax.swing.JPanel {
                         .addComponent(Factura)
                         .addComponent(Stock_e, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Actual_e)
-                        .addComponent(Fecha_e, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Fecha_e, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
                     .addComponent(Precio_e, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         Entrada_panelLayout.setVerticalGroup(
             Entrada_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Entrada_panelLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(Entrada_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Producto_e)
                     .addComponent(Stock_e, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -233,10 +248,10 @@ public class Inventarios extends javax.swing.JPanel {
                     .addComponent(Precio_e, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(Entrada)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        add(Entrada_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 450, 380));
+        add(Entrada_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 450, 380));
 
         Salida_panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -253,7 +268,7 @@ public class Inventarios extends javax.swing.JPanel {
             }
         });
 
-        Actual_s.setEnabled(false);
+        Actual_s.setEditable(false);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("Cantidad actual:");
@@ -288,7 +303,6 @@ public class Inventarios extends javax.swing.JPanel {
         Concepto_s.setLineWrap(true);
         Concepto_s.setRows(5);
         Concepto_s.setWrapStyleWord(true);
-        jScrollPane2.setViewportView(Concepto_s);
 
         javax.swing.GroupLayout Salida_panelLayout = new javax.swing.GroupLayout(Salida_panel);
         Salida_panel.setLayout(Salida_panelLayout);
@@ -298,29 +312,31 @@ public class Inventarios extends javax.swing.JPanel {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(Salida_panelLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addContainerGap()
                 .addGroup(Salida_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
-                    .addComponent(Producto_s)
                     .addComponent(jLabel10)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel12))
+                    .addComponent(jLabel12)
+                    .addComponent(Producto_s))
                 .addGap(44, 44, 44)
-                .addGroup(Salida_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Salida)
-                    .addGroup(Salida_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(Fecha_s, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                        .addComponent(Actual_s)
-                        .addComponent(Stock_s, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Cantidad_s)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addGroup(Salida_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Fecha_s, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Cantidad_s)
+                    .addComponent(Concepto_s, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                    .addComponent(Stock_s, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Actual_s))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Salida_panelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Salida)
+                .addGap(121, 121, 121))
         );
         Salida_panelLayout.setVerticalGroup(
             Salida_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Salida_panelLayout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(Salida_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Producto_s)
                     .addComponent(Stock_s, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -333,36 +349,50 @@ public class Inventarios extends javax.swing.JPanel {
                     .addComponent(Fecha_s, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Salida_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Salida_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(Concepto_s, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addGroup(Salida_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cantidad_s, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addComponent(Salida)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
-        add(Salida_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 280, -1, 380));
+        add(Salida_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, -1, 380));
 
         Title.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Title.setText("Inventario");
-        add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 40));
+        add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void Radio_prodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Radio_prodActionPerformed
+        Cargando.setVisible(true);
+        jScrollPane1.setVisible(false);
+        Inventarios.setVisible(false);
         limpiar();
         Enable(false, false);
-        Cargar_Inventario_Pro();
+        new Thread() {
+            public void run() {
+                Cargar_Inventario_Pro();
+            }
+        }.start();
     }//GEN-LAST:event_Radio_prodActionPerformed
 
     private void Radio_matActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Radio_matActionPerformed
+        Cargando.setVisible(true);
+        jScrollPane1.setVisible(false);
+        Inventarios.setVisible(false);
         limpiar();
         Enable(false, false);
-        Cargar_Inventario_Mat();
+        new Thread() {
+            public void run() {
+                Cargar_Inventario_Mat();
+            }
+        }.start();
     }//GEN-LAST:event_Radio_matActionPerformed
 
     private void EntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntradasActionPerformed
@@ -397,155 +427,178 @@ public class Inventarios extends javax.swing.JPanel {
 
     private void Stock_eItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Stock_eItemStateChanged
         if (Radio_mat.isSelected()) {
-            if (evt.getStateChange() == ItemEvent.SELECTED && Stock_e.getSelectedIndex() > 0) {
-                for (String[] Mate : Materias) {
-                    if (Mate[0].equals(Stock_e.getSelectedItem())) {
-                        Actual_e.setText(Mate[1]);
+            if (Stock_e.getSelectedIndex() > 0) {
+                if (evt.getStateChange() == ItemEvent.SELECTED && Stock_e.getSelectedIndex() > 0) {
+                    for (String[] Mate : Materias) {
+                        if (Mate[0].equals(Stock_e.getSelectedItem())) {
+                            Actual_e.setText(Mate[1]);
+                        }
                     }
                 }
+            } else {
+                Actual_e.setText("");
             }
         }
         if (Radio_prod.isSelected()) {
-            if (evt.getStateChange() == ItemEvent.SELECTED && Stock_e.getSelectedIndex() > 0) {
-                for (String[] Pro : Productos) {
-                    if (Pro[0].equals(Stock_e.getSelectedItem())) {
-                        Actual_e.setText(Pro[1]);
+            if (Stock_e.getSelectedIndex() > 0) {
+                if (evt.getStateChange() == ItemEvent.SELECTED && Stock_e.getSelectedIndex() > 0) {
+                    for (String[] Pro : Productos) {
+                        if (Pro[0].equals(Stock_e.getSelectedItem())) {
+                            Actual_e.setText(Pro[1]);
+                        }
                     }
                 }
+            } else {
+                Actual_e.setText("");
             }
         }
-
     }//GEN-LAST:event_Stock_eItemStateChanged
 
     private void EntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntradaActionPerformed
-        boolean fact = false;
-        int facts = 0;
-        if (Radio_mat.isSelected()) {
-            for (String[] Mate : Materias) {
-                if (Mate[0].equals(Stock_e.getSelectedItem())) {
-                    id_mat = Integer.parseInt(Mate[2]);
+        new Thread() {
+            public void run() {
+                boolean fact = false;
+                int facts = 0;
+                if (Radio_mat.isSelected()) {
+                    for (String[] Mate : Materias) {
+                        if (Mate[0].equals(Stock_e.getSelectedItem())) {
+                            id_mat = Integer.parseInt(Mate[2]);
+                        }
+                    }
+                }
+                if (Radio_prod.isSelected()) {
+                    for (String[] Pro : Productos) {
+                        if (Pro[0].equals(Stock_e.getSelectedItem())) {
+                            id_prod = Integer.parseInt(Pro[2]);
+                        }
+                    }
+                }
+                if (!Factura.getText().isEmpty()) {
+                    facts = Integer.parseInt(Factura.getText());
+                    fact = true;
+                }
+                int año = Fecha_e.getCalendar().get(Calendar.YEAR);
+                int mes = Fecha_e.getCalendar().get(Calendar.MARCH);
+                int dia = Fecha_e.getCalendar().get(Calendar.DAY_OF_MONTH);
+                String fech = año + "-" + mes + "-" + dia;
+                Date Fecha = Date.valueOf(fech);
+
+                if (Radio_mat.isSelected()) {
+                    Stock_Entrada se = new Stock_Entrada(id_mat,
+                            facts,
+                            Fecha,
+                            Double.parseDouble(Cantidad_e.getText()),
+                            Float.valueOf(Precio_e.getText()));
+                    control_Stock cs = new control_Stock();
+                    boolean status = cs.Entrada_Materia(se, fact);
+                    if (status) {
+                        JOptionPane.showMessageDialog(null, "Entrada actuaizada", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    Cargar_Inventario_Mat();
+                    Limpiar_Entradas();
+                }
+                if (Radio_prod.isSelected()) {
+                    Stock_Entrada se = new Stock_Entrada(id_prod,
+                            facts,
+                            Fecha,
+                            Integer.parseInt(Cantidad_e.getText()),
+                            Float.valueOf(Precio_e.getText()));
+                    control_Stock cs = new control_Stock();
+                    boolean status = cs.Entrada_Producto(se, fact);
+                    if (status) {
+                        JOptionPane.showMessageDialog(null, "Entrada actuaizada", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    Cargar_Inventario_Pro();
+                    Limpiar_Entradas();
                 }
             }
-        }
-        if (Radio_prod.isSelected()) {
-            for (String[] Pro : Productos) {
-                if (Pro[0].equals(Stock_e.getSelectedItem())) {
-                    id_prod = Integer.parseInt(Pro[2]);
-                }
-            }
-        }
-        if (!Factura.getText().isEmpty()) {
-            facts = Integer.parseInt(Factura.getText());
-            fact = true;
-        }
-        int año = Fecha_e.getCalendar().get(Calendar.YEAR);
-        int mes = Fecha_e.getCalendar().get(Calendar.MARCH);
-        int dia = Fecha_e.getCalendar().get(Calendar.DAY_OF_MONTH);
-        String fech = año + "-" + mes + "-" + dia;
-        Date Fecha = Date.valueOf(fech);
-
-        if (Radio_mat.isSelected()) {
-            Stock_Entrada se = new Stock_Entrada(id_mat,
-                    facts,
-                    Fecha,
-                    Integer.parseInt(Cantidad_e.getText()),
-                    Float.valueOf(Precio_e.getText()));
-            control_Stock cs = new control_Stock();
-            boolean status = cs.Entrada_Materia(se, fact);
-            if (status) {
-                JOptionPane.showMessageDialog(null, "Entrada actuaizada", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
-            }
-            Cargar_Inventario_Mat();
-            Limpiar_Entradas();
-        }
-        if (Radio_prod.isSelected()) {
-            Stock_Entrada se = new Stock_Entrada(id_prod,
-                    facts,
-                    Fecha,
-                    Integer.parseInt(Cantidad_e.getText()),
-                    Float.valueOf(Precio_e.getText()));
-            control_Stock cs = new control_Stock();
-            boolean status = cs.Entrada_Producto(se, fact);
-            if (status) {
-                JOptionPane.showMessageDialog(null, "Entrada actuaizada", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
-            }
-            Cargar_Inventario_Pro();
-            Limpiar_Entradas();
-        }
-
+        }.start();
     }//GEN-LAST:event_EntradaActionPerformed
 
     private void SalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalidaActionPerformed
-        if (valido == true) {
-            if (Radio_mat.isSelected()) {
-                for (String[] Mate : Materias) {
-                    if (Mate[0].equals(Stock_s.getSelectedItem())) {
-                        id_mat = Integer.parseInt(Mate[2]);
+        new Thread() {
+            @Override
+            public void run() {
+                if (valido == true) {
+                    if (Radio_mat.isSelected()) {
+                        for (String[] Mate : Materias) {
+                            if (Mate[0].equals(Stock_s.getSelectedItem())) {
+                                id_mat = Integer.parseInt(Mate[2]);
+                            }
+                        }
                     }
-                }
-            }
-            if (Radio_prod.isSelected()) {
-                for (String[] Pro : Productos) {
-                    if (Pro[0].equals(Stock_s.getSelectedItem())) {
-                        id_prod = Integer.parseInt(Pro[2]);
+                    if (Radio_prod.isSelected()) {
+                        for (String[] Pro : Productos) {
+                            if (Pro[0].equals(Stock_s.getSelectedItem())) {
+                                id_prod = Integer.parseInt(Pro[2]);
+                            }
+                        }
                     }
-                }
-            }
 
-            int año = Fecha_s.getCalendar().get(Calendar.YEAR);
-            int mes = Fecha_s.getCalendar().get(Calendar.MARCH);
-            int dia = Fecha_s.getCalendar().get(Calendar.DAY_OF_MONTH);
-            String fech = año + "-" + mes + "-" + dia;
-            Date Fecha = Date.valueOf(fech);
+                    int año = Fecha_s.getCalendar().get(Calendar.YEAR);
+                    int mes = Fecha_s.getCalendar().get(Calendar.MARCH);
+                    int dia = Fecha_s.getCalendar().get(Calendar.DAY_OF_MONTH);
+                    String fech = año + "-" + mes + "-" + dia;
+                    Date Fecha = Date.valueOf(fech);
 
-            if (Radio_mat.isSelected()) {
-                Stock_Salida se = new Stock_Salida(id_mat,
-                        Fecha,
-                        Concepto_s.getText(),
-                        Integer.parseInt(Cantidad_s.getText()));
-                control_Stock cs = new control_Stock();
-                boolean status = cs.Salida_Materia(se);
-                if (status) {
-                    JOptionPane.showMessageDialog(null, "Salida actuaizada", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
+                    if (Radio_mat.isSelected()) {
+                        Stock_Salida se = new Stock_Salida(id_mat,
+                                Fecha,
+                                Concepto_s.getText(),
+                                Double.parseDouble(Cantidad_s.getText()));
+                        control_Stock cs = new control_Stock();
+                        boolean status = cs.Salida_Materia(se);
+                        if (status) {
+                            JOptionPane.showMessageDialog(null, "Salida actuaizada", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        Cargar_Inventario_Mat();
+                        Limpiar_Salidas();
+                    }
+                    if (Radio_prod.isSelected()) {
+                        Stock_Salida se = new Stock_Salida(id_prod,
+                                Fecha,
+                                Concepto_s.getText(),
+                                Integer.parseInt(Cantidad_s.getText()));
+                        control_Stock cs = new control_Stock();
+                        boolean status = cs.Salida_Producto(se);
+                        if (status) {
+                            JOptionPane.showMessageDialog(null, "Salida actuaizada", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        Cargar_Inventario_Pro();
+                        Limpiar_Salidas();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cantidad negativa no valida", "Error", JOptionPane.INFORMATION_MESSAGE);
                 }
-                Cargar_Inventario_Mat();
-                Limpiar_Salidas();
             }
-            if (Radio_prod.isSelected()) {
-                Stock_Salida se = new Stock_Salida(id_prod,
-                        Fecha,
-                        Concepto_s.getText(),
-                        Integer.parseInt(Cantidad_s.getText()));
-                control_Stock cs = new control_Stock();
-                boolean status = cs.Salida_Producto(se);
-                if (status) {
-                    JOptionPane.showMessageDialog(null, "Salida actuaizada", "!Exito¡", JOptionPane.INFORMATION_MESSAGE);
-                }
-                Cargar_Inventario_Pro();
-                Limpiar_Salidas();
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Cantidad negativa no valida", "Error", JOptionPane.INFORMATION_MESSAGE);
-        }
+        }.start();
     }//GEN-LAST:event_SalidaActionPerformed
 
     private void Stock_sItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Stock_sItemStateChanged
         if (Radio_mat.isSelected()) {
-            if (evt.getStateChange() == ItemEvent.SELECTED && Stock_s.getSelectedIndex() > 0) {
-                for (String[] Mate : Materias) {
-                    if (Mate[0].equals(Stock_s.getSelectedItem())) {
-                        Actual_s.setText(Mate[1]);
+            if (Stock_s.getSelectedIndex() > 0) {
+                if (evt.getStateChange() == ItemEvent.SELECTED && Stock_s.getSelectedIndex() > 0) {
+                    for (String[] Mate : Materias) {
+                        if (Mate[0].equals(Stock_s.getSelectedItem())) {
+                            Actual_s.setText(Mate[1]);
+                        }
                     }
                 }
+            } else {
+                Actual_s.setText("");
             }
         }
         if (Radio_prod.isSelected()) {
-            if (evt.getStateChange() == ItemEvent.SELECTED && Stock_s.getSelectedIndex() > 0) {
-                for (String[] Pro : Productos) {
-                    if (Pro[0].equals(Stock_s.getSelectedItem())) {
-                        Actual_s.setText(Pro[1]);
+            if (Stock_s.getSelectedIndex() > 0) {
+                if (evt.getStateChange() == ItemEvent.SELECTED && Stock_s.getSelectedIndex() > 0) {
+                    for (String[] Pro : Productos) {
+                        if (Pro[0].equals(Stock_s.getSelectedItem())) {
+                            Actual_s.setText(Pro[1]);
+                        }
                     }
                 }
+            } else {
+                Actual_s.setText("");
             }
         }
     }//GEN-LAST:event_Stock_sItemStateChanged
@@ -584,8 +637,19 @@ public class Inventarios extends javax.swing.JPanel {
     }//GEN-LAST:event_Cantidad_sKeyReleased
 
     private void Cantidad_eKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Cantidad_eKeyReleased
-        
+
     }//GEN-LAST:event_Cantidad_eKeyReleased
+
+    private void Precio_eKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Precio_eKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+        boolean punto = key == 46;
+
+        if (!numeros && !punto) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_Precio_eKeyTyped
     private void limpiar() {
         Inventarios.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
@@ -630,6 +694,7 @@ public class Inventarios extends javax.swing.JPanel {
     private javax.swing.JTextField Actual_s;
     private javax.swing.JTextField Cantidad_e;
     private javax.swing.JTextField Cantidad_s;
+    private javax.swing.JLabel Cargando;
     private javax.swing.JTextArea Concepto_s;
     private javax.swing.JButton Entrada;
     private javax.swing.JPanel Entrada_panel;
@@ -662,7 +727,6 @@ public class Inventarios extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     public static javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
     private void Cargar_Inventario_Mat() {
@@ -675,40 +739,50 @@ public class Inventarios extends javax.swing.JPanel {
         Stock_s.addItem("Selecciona un producto");
         Materias = new String[tam][3];
         String list[][] = new String[tam][5];
-        for (int i = 0; i < tam; i++) {
-            Materias[i][0] = lista.get(i).getInv_name();
-            Materias[i][1] = String.valueOf(lista.get(i).getInv_stock());
-            Materias[i][2] = String.valueOf(lista.get(i).getInv_prod_codigo());
-            Stock_e.addItem(lista.get(i).getInv_name());
-            Stock_s.addItem(lista.get(i).getInv_name());
-            list[i][0] = String.valueOf(lista.get(i).getInv_prod_codigo());
-            list[i][1] = lista.get(i).getInv_name();
-            list[i][2] = String.valueOf(lista.get(i).getInv_entradas());
-            list[i][3] = String.valueOf(lista.get(i).getInv_salidas());
-            list[i][4] = String.valueOf(lista.get(i).getInv_stock());
+        if (tam > 0) {
+
+            Entradas.setEnabled(true);
+            Salidas.setEnabled(true);
+            for (int i = 0; i < tam; i++) {
+                Materias[i][0] = lista.get(i).getInv_name();
+                Materias[i][1] = String.valueOf(lista.get(i).getInv_stock());
+                Materias[i][2] = String.valueOf(lista.get(i).getInv_prod_codigo());
+                Stock_e.addItem(lista.get(i).getInv_name());
+                Stock_s.addItem(lista.get(i).getInv_name());
+                list[i][0] = String.valueOf(lista.get(i).getInv_prod_codigo());
+                list[i][1] = lista.get(i).getInv_name();
+                list[i][2] = String.valueOf(lista.get(i).getInv_entradas());
+                list[i][3] = String.valueOf(lista.get(i).getInv_salidas());
+                list[i][4] = String.valueOf(lista.get(i).getInv_stock());
+            }
+            Inventarios.setModel(new javax.swing.table.DefaultTableModel(
+                    list,
+                    new String[]{
+                        "Id", "Descripcion", "Entradas", "Salidas", "Stock"
+                    }) {
+                Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                };
+                boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false
+                };
+
+                @Override
+                public Class getColumnClass(int columnIndex) {
+                    return types[columnIndex];
+                }
+
+                @Override
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit[columnIndex];
+                }
+            });
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontro algun registro", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         }
-        Inventarios.setModel(new javax.swing.table.DefaultTableModel(
-                list,
-                new String[]{
-                    "Id", "Descripcion", "Entradas", "Salidas", "Stock"
-                }) {
-            Class[] types = new Class[]{
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false
-            };
-
-            @Override
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        });
+        jScrollPane1.setVisible(true);
+        Inventarios.setVisible(true);
+        Cargando.setVisible(false);
     }
 
     private void Cargar_Inventario_Pro() {
@@ -721,40 +795,50 @@ public class Inventarios extends javax.swing.JPanel {
         Stock_s.addItem("Selecciona un producto");
         Productos = new String[tam][3];
         String list[][] = new String[tam][5];
-        for (int i = 0; i < tam; i++) {
-            Productos[i][0] = lista.get(i).getInv_name();
-            Productos[i][1] = String.valueOf(lista.get(i).getInv_stock());
-            Productos[i][2] = String.valueOf(lista.get(i).getInv_id_producto());
-            Stock_e.addItem(lista.get(i).getInv_name());
-            Stock_s.addItem(lista.get(i).getInv_name());
-            list[i][0] = String.valueOf(lista.get(i).getInv_id_producto());
-            list[i][1] = lista.get(i).getInv_name();
-            list[i][2] = String.valueOf(lista.get(i).getInv_entradas());
-            list[i][3] = String.valueOf(lista.get(i).getInv_salidas());
-            list[i][4] = String.valueOf(lista.get(i).getInv_stock());
+
+        if (tam > 0) {
+
+            Entradas.setEnabled(true);
+            Salidas.setEnabled(true);
+            for (int i = 0; i < tam; i++) {
+                Productos[i][0] = lista.get(i).getInv_name();
+                Productos[i][1] = String.valueOf(lista.get(i).getInv_stock());
+                Productos[i][2] = String.valueOf(lista.get(i).getInv_id_producto());
+                Stock_e.addItem(lista.get(i).getInv_name());
+                Stock_s.addItem(lista.get(i).getInv_name());
+                list[i][0] = String.valueOf(lista.get(i).getInv_id_producto());
+                list[i][1] = lista.get(i).getInv_name();
+                list[i][2] = String.valueOf(lista.get(i).getInv_entradas());
+                list[i][3] = String.valueOf(lista.get(i).getInv_salidas());
+                list[i][4] = String.valueOf(lista.get(i).getInv_stock());
+            }
+            Inventarios.setModel(new javax.swing.table.DefaultTableModel(
+                    list,
+                    new String[]{
+                        "Id", "Descripcion", "Entradas", "Salidas", "Stock"
+                    }) {
+                Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                };
+                boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false
+                };
+
+                @Override
+                public Class getColumnClass(int columnIndex) {
+                    return types[columnIndex];
+                }
+
+                @Override
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit[columnIndex];
+                }
+            });
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontro algun registro", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         }
-        Inventarios.setModel(new javax.swing.table.DefaultTableModel(
-                list,
-                new String[]{
-                    "Id", "Descripcion", "Entradas", "Salidas", "Stock"
-                }) {
-            Class[] types = new Class[]{
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false
-            };
-
-            @Override
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        });
+        jScrollPane1.setVisible(true);
+        Inventarios.setVisible(true);
+        Cargando.setVisible(false);
     }
-
 }

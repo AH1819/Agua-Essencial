@@ -8,7 +8,8 @@ public class Stock_Entrada {
     private int id;
     private int factura;
     private Date fecha;
-    private int cantidad;
+    private int cantidad_p;
+    private double cantidad_m;
     private float precio_compra;
 
     public Stock_Entrada() {
@@ -18,10 +19,18 @@ public class Stock_Entrada {
         this.id = id;
         this.factura = factura;
         this.fecha = fecha;
-        this.cantidad = cantidad;
+        this.cantidad_p = cantidad;
         this.precio_compra = precio_compra;
     }
-
+    
+    public Stock_Entrada(int id, int factura, Date fecha, double cantidad_m, float precio_compra) {
+        this.id = id;
+        this.factura = factura;
+        this.fecha = fecha;
+        this.cantidad_m = cantidad_m;
+        this.precio_compra = precio_compra;
+    }
+    
     public int getId_entrada() {
         return id_entrada;
     }
@@ -54,20 +63,28 @@ public class Stock_Entrada {
         this.fecha = fecha;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
     public float getPrecio_compra() {
         return precio_compra;
     }
 
     public void setPrecio_compra(float precio_compra) {
         this.precio_compra = precio_compra;
+    }
+
+    public int getCantidad_p() {
+        return cantidad_p;
+    }
+
+    public void setCantidad_p(int cantidad_p) {
+        this.cantidad_p = cantidad_p;
+    }
+
+    public double getCantidad_m() {
+        return cantidad_m;
+    }
+
+    public void setCantidad_m(double cantidad_m) {
+        this.cantidad_m = cantidad_m;
     }
 
 }

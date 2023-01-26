@@ -56,8 +56,9 @@ public class Proveedores extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(102, 102, 102));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Proveedores_t.setModel(new javax.swing.table.DefaultTableModel(
@@ -340,10 +341,10 @@ public class Proveedores extends javax.swing.JPanel {
 
         add(Panel_Añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 100, 400, 390));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Proveedores");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 30));
+        jLabel21.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("Gestion de proveedores");
+        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 0, 1370, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void Proveedores_tMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Proveedores_tMouseClicked
@@ -446,8 +447,8 @@ public class Proveedores extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

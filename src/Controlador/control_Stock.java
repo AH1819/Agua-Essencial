@@ -33,12 +33,12 @@ public class control_Stock {
                 comando.setInt(1, se.getId());
                 comando.setInt(2, se.getFactura());
                 comando.setDate(3, (Date) se.getFecha());
-                comando.setInt(4, se.getCantidad());
+                comando.setDouble(4, se.getCantidad_m());
                 comando.setFloat(5, se.getPrecio_compra());
             } else {
                 comando.setInt(1, se.getId());
                 comando.setDate(2, se.getFecha());
-                comando.setInt(3, se.getCantidad());
+                comando.setDouble(3, se.getCantidad_m());
                 comando.setFloat(4, se.getPrecio_compra());
             }
 
@@ -73,12 +73,12 @@ public class control_Stock {
                 comando.setInt(1, se.getId());
                 comando.setInt(2, se.getFactura());
                 comando.setDate(3, (Date) se.getFecha());
-                comando.setInt(4, se.getCantidad());
+                comando.setInt(4, se.getCantidad_p());
                 comando.setFloat(5, se.getPrecio_compra());
             } else {
                 comando.setInt(1, se.getId());
                 comando.setDate(2, se.getFecha());
-                comando.setInt(3, se.getCantidad());
+                comando.setInt(3, se.getCantidad_p());
                 comando.setFloat(4, se.getPrecio_compra());
             }
 
@@ -107,7 +107,7 @@ public class control_Stock {
             comando.setInt(1, ss.getId());
             comando.setDate(2, (Date) ss.getFecha());
             comando.setString(3, ss.getConcepto());
-            comando.setInt(4, ss.getCantidad());
+            comando.setDouble(4, ss.getCantidad_m());
 
             comando.executeUpdate();
 
@@ -134,7 +134,7 @@ public class control_Stock {
             comando.setInt(1, ss.getId());
             comando.setDate(2, (Date) ss.getFecha());
             comando.setString(3, ss.getConcepto());
-            comando.setInt(4, ss.getCantidad());
+            comando.setInt(4, ss.getCantidad_p());
 
             comando.executeUpdate();
 

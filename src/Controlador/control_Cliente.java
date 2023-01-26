@@ -110,7 +110,11 @@ public class control_Cliente {
     public List<Cliente> Mostrar_Clientes_Agenda() {
         List<Cliente> C = new ArrayList<>();
 
-        String sql = "select id_cliente,nombre,apellido_p,apellido_m from clientes";
+        String sql = "select clientes.id_cliente, clientes.nombre, clientes.apellido_p, clientes.apellido_m "
+                + "from agenda inner join clientes "
+                + "on clientes.id_cliente = agenda.id_cliente "
+                + "group by clientes.id_cliente "
+                + "order by clientes.id_cliente";
         PreparedStatement comando = null;
 
         try {
